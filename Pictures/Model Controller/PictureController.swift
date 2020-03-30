@@ -8,11 +8,15 @@
 
 import UIKit
 
-class PicturesController {
+class PictureController {
     
     // Both do the same thing.
     private(set) var pictures = [Picture]()
     //var pictures: [Picture] = []
+    
+    init() {
+        createPicture(withTitle: "Party With Friends", description: "Had a blast on new years eve with friends!", imageData: UIImage(named: "partyImage")?.pngData() ?? Data())
+    }
     
     // MARK: - C.R.U.D. Methods
     
@@ -34,7 +38,7 @@ class PicturesController {
 }
 
 // To avoid this we can make the pictures array private
-//let picture = PicturesController()
+//let picture = PictureController()
 //picture.pictures += [Picture(title: "Title", description: "", imageData: Data())]
 
 

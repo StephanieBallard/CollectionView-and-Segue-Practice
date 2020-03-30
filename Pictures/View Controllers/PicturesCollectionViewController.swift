@@ -12,28 +12,46 @@ class PicturesCollectionViewController: UICollectionViewController {
     
     // MARK: - Properties
     
-    let pictureController = PicturesController()
+    let pictureController = PictureController()
     
     // MARK: Life Cycles
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using [segue destinationViewController].
-     // Pass the selected object to the new view controller.
-     }
-     */
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        collectionView.reloadData()
+    }
+    
+    // MARK: - Navigation
+    
+    // Segue Steps:
+    // 1. Get segue's name or identifier
+    // 2. Set the view controller that's the Destination
+    // 3. Hand over relevant data to the destinationVC
+    // 4. Get the object from the array using an indexPath
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "AddPictureSegue" {
+            guard let addPictureVC = segue.destination as? AddPictureViewController else { return }
+            addPictureVC.pictureController = pictureController
+            
+        } else if segue.identifier == "PictureDetailSegue" {
+            guard let pictureDetailVC = segue.destination as? PictureDetailViewController else { return }
+            pictureDetailVC.pictureController = pictureController
+            
+            // 1. Get an instance of the cell for the collection view
+            guard let cell = sender as? PictureCollectionViewCell else { return }
+            // 2. Get indexPath from the cell object
+            guard let indexPath = collectionView.indexPath(for: cell) else { return }
+            // 3. Hand off oject to destinationVC
+            pictureDetailVC.picture = pictureController.pictures[indexPath.item]
+        }
+    }
     
     // MARK: UICollectionViewDataSource
-    
-    override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return pictureController.pictures.count
@@ -48,14 +66,19 @@ class PicturesCollectionViewController: UICollectionViewController {
     
     // MARK: UICollectionViewDelegate
     
-//    override func setEditing(_ editing: Bool, animated: Bool) {
-//        super.setEditing(editing, animated: animated)
-//
-//        collectionView.allowsMultipleSelection = editing
-//        let indexPaths = collectionView.indexPathsForVisibleItems
-//        for indexPath in indexPaths {
-//            let cell = collectionView.cellForItem(at: indexPath) as? PictureCollectionViewCell
-//        }
-//    }
+    //    override func setEditing(_ editing: Bool, animated: Bool) {
+    //        super.setEditing(editing, animated: animated)
+    //
+    //        collectionView.allowsMultipleSelection = editing
+    //        let indexPaths = collectionView.indexPathsForVisibleItems
+    //        for indexPath in indexPaths {
+    //            let cell = collectionView.cellForItem(at: indexPath) as? PictureCollectionViewCell
+    //        }
+    //    }
 }
 
+extension PicturesCollectionViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 358, height: 354)
+    }
+}

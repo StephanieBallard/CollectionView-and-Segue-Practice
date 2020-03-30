@@ -91,10 +91,11 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vxQ-3n-Uwi">
                                             <rect key="frame" x="0.0" y="0.0" width="358" height="354"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NZH-gw-DK2">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="NZH-gw-DK2">
                                                     <rect key="frame" x="10" y="10" width="338" height="250"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="250" id="Eel-BB-X1G"/>
+                                                        <constraint firstAttribute="width" secondItem="NZH-gw-DK2" secondAttribute="height" multiplier="169:125" id="37Z-t3-PiS"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="snb-ms-YV2">
@@ -108,10 +109,10 @@
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="snb-ms-YV2" secondAttribute="trailing" constant="10" id="9iR-oP-jxW"/>
                                                 <constraint firstItem="snb-ms-YV2" firstAttribute="leading" secondItem="vxQ-3n-Uwi" secondAttribute="leading" constant="10" id="BP3-gZ-vZ5"/>
-                                                <constraint firstItem="NZH-gw-DK2" firstAttribute="leading" secondItem="vxQ-3n-Uwi" secondAttribute="leading" constant="10" id="LeX-sR-9vz"/>
-                                                <constraint firstAttribute="trailing" secondItem="NZH-gw-DK2" secondAttribute="trailing" constant="10" id="aFo-w3-mRs"/>
-                                                <constraint firstItem="snb-ms-YV2" firstAttribute="top" secondItem="NZH-gw-DK2" secondAttribute="bottom" constant="30" id="cdN-Lj-b2P"/>
-                                                <constraint firstItem="NZH-gw-DK2" firstAttribute="top" secondItem="vxQ-3n-Uwi" secondAttribute="top" constant="10" id="qmJ-R9-i5n"/>
+                                                <constraint firstAttribute="trailing" secondItem="NZH-gw-DK2" secondAttribute="trailing" constant="10" id="BPY-wi-FaO"/>
+                                                <constraint firstItem="snb-ms-YV2" firstAttribute="top" secondItem="NZH-gw-DK2" secondAttribute="bottom" constant="30" id="X4k-br-P5q"/>
+                                                <constraint firstItem="NZH-gw-DK2" firstAttribute="top" secondItem="vxQ-3n-Uwi" secondAttribute="top" constant="10" id="b3C-b8-vFi"/>
+                                                <constraint firstItem="NZH-gw-DK2" firstAttribute="leading" secondItem="vxQ-3n-Uwi" secondAttribute="leading" constant="10" id="m6C-zg-sjA"/>
                                             </constraints>
                                         </view>
                                     </subviews>
@@ -155,11 +156,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AvT-lq-v1y">
-                                <rect key="frame" x="20" y="118" width="374" height="300"/>
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="AvT-lq-v1y">
+                                <rect key="frame" x="20" y="119" width="374" height="297.5"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="300" id="nYX-k8-JTw"/>
                                 </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="rkd-rV-j2c" appends="YES" id="zk8-Q2-4Gm"/>
+                                </connections>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="5Ie-F2-AVe">
                                 <rect key="frame" x="20" y="443" width="374" height="72"/>
@@ -197,6 +202,9 @@
                                 <rect key="frame" x="132" y="677" width="150" height="48"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <state key="normal" title="Save Image"/>
+                                <connections>
+                                    <action selector="saveImageButtonTapped:" destination="ney-5B-uDz" eventType="touchUpInside" id="tdP-yN-j6C"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -218,8 +226,18 @@
                         <viewLayoutGuide key="safeArea" id="sya-Mi-jVU"/>
                     </view>
                     <navigationItem key="navigationItem" id="eYN-Ri-ADx"/>
+                    <connections>
+                        <outlet property="descriptionTextField" destination="RNz-fB-EcY" id="Ltc-Z7-xYZ"/>
+                        <outlet property="imageView" destination="AvT-lq-v1y" id="bi9-Rb-tGi"/>
+                        <outlet property="titleTextField" destination="Evx-KI-IPB" id="i4b-s6-zrr"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d4q-oQ-h7L" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="rkd-rV-j2c">
+                    <connections>
+                        <action selector="openPhotoLibrary:" destination="ney-5B-uDz" id="PMA-R1-dWT"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2893" y="-1226"/>
         </scene>
@@ -418,13 +436,24 @@
                                     </textField>
                                 </subviews>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KTl-ey-lSt">
+                                <rect key="frame" x="20" y="647" width="374" height="48"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <state key="normal" title="Update Picture Details"/>
+                                <connections>
+                                    <action selector="updatePicture:" destination="ecM-GC-yZl" eventType="touchUpInside" id="g4g-Ib-kRy"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="FNj-zn-6gc" firstAttribute="trailing" secondItem="EpM-rS-3Zg" secondAttribute="trailing" constant="20" id="4og-ny-axK"/>
+                            <constraint firstItem="FNj-zn-6gc" firstAttribute="trailing" secondItem="KTl-ey-lSt" secondAttribute="trailing" constant="20" id="9em-tz-Fjv"/>
+                            <constraint firstItem="KTl-ey-lSt" firstAttribute="top" secondItem="804-bN-php" secondAttribute="bottom" constant="30" id="JYv-Oa-kX7"/>
                             <constraint firstItem="CUn-xr-jnD" firstAttribute="top" secondItem="EpM-rS-3Zg" secondAttribute="bottom" constant="25" id="KDQ-8u-0Us"/>
                             <constraint firstItem="804-bN-php" firstAttribute="top" secondItem="CUn-xr-jnD" secondAttribute="bottom" constant="30" id="VHr-09-lzW"/>
                             <constraint firstItem="FNj-zn-6gc" firstAttribute="trailing" secondItem="804-bN-php" secondAttribute="trailing" constant="20" id="Wic-QI-XFR"/>
+                            <constraint firstItem="KTl-ey-lSt" firstAttribute="centerX" secondItem="a3m-Co-SFD" secondAttribute="centerX" id="Z6e-GJ-a2T"/>
                             <constraint firstItem="EpM-rS-3Zg" firstAttribute="top" secondItem="FNj-zn-6gc" secondAttribute="top" constant="30" id="ZHC-rD-phV"/>
                             <constraint firstItem="CUn-xr-jnD" firstAttribute="leading" secondItem="FNj-zn-6gc" secondAttribute="leading" constant="20" id="bjh-md-X0k"/>
                             <constraint firstItem="EpM-rS-3Zg" firstAttribute="leading" secondItem="FNj-zn-6gc" secondAttribute="leading" constant="20" id="l55-3L-3sY"/>
@@ -434,10 +463,18 @@
                         <viewLayoutGuide key="safeArea" id="FNj-zn-6gc"/>
                     </view>
                     <navigationItem key="navigationItem" id="gCc-mY-Cxr"/>
+                    <connections>
+                        <outlet property="descriptionTextField" destination="pk5-7f-hG2" id="sDW-fo-G78"/>
+                        <outlet property="imageView" destination="EpM-rS-3Zg" id="bcR-Sl-piH"/>
+                        <outlet property="titleTextField" destination="1A0-Bt-JNj" id="szd-kc-VqX"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EY3-fx-5Bb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2893" y="-534"/>
+            <point key="canvasLocation" x="2892.753623188406" y="-534.375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="photo.fill" catalog="system" width="128" height="93"/>
+    </resources>
 </document>
